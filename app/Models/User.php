@@ -29,4 +29,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function kits(){
+        return $this->hasMany(Kit::class);
+    }
+    
+    public function categorias(){
+        return $this->hasMany(Categoria::class);
+    }
+
 }
