@@ -1,0 +1,125 @@
+### Registar utilizador
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+    "name": "Teste User",
+    "email": "teste@teste.com",
+    "password": "123456",
+    "password_confirmation": "123456"
+}
+
+### Login
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "email": "teste@teste.com",
+    "password": "123456"
+}
+
+### Me (utilizador autenticado)
+GET http://localhost:8000/api/user
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+### Logout
+POST http://localhost:8000/api/logout
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+### Listar kits
+GET http://localhost:8000/api/kits
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+### Criar kit
+POST http://localhost:8000/api/kits
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+{
+    "nome": "Kit Pessoal",
+    "descricao": "Kit de emergência pessoal"
+}
+
+### Ver kit
+GET http://localhost:8000/api/kits/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+### Atualizar kit
+PUT http://localhost:8000/api/kits/2
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+{
+    "nome": "Kit Pessoal Atualizado",
+    "descricao": "Descrição atualizada"
+}
+
+### Apagar kit
+DELETE http://localhost:8000/api/kits/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+### Listar categorias
+GET http://localhost:8000/api/categorias
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+### Criar categoria
+POST http://localhost:8000/api/categorias
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+{
+    "nome": "Água",
+    "descricao": "Itens relacionados com água"
+}
+
+### Atualizar categoria
+PUT http://localhost:8000/api/categorias/1
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+{
+    "nome": "Água Atualizado",
+    "descricao": "Descrição atualizada"
+}
+
+### Apagar categoria
+DELETE http://localhost:8000/api/categorias/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+### Listar items
+GET http://localhost:8000/api/items
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+### Listar items por kit
+GET http://localhost:8000/api/items?kit_id=2
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+### Criar item
+POST http://localhost:8000/api/items
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+{
+    "nome": "Garrafa de água",
+    "descricao": "2 litros",
+    "quantidade": 10,
+    "kit_id": 2,
+    "categoria_id": 10
+}
+
+### Atualizar item
+PUT http://localhost:8000/api/items/1
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s
+
+{
+    "nome": "Garrafa de água",
+    "descricao": "2 litros",
+    "quantidade": 5,
+    "comprado": true,
+    "categoria_id": 10
+}
+
+### Apagar item
+DELETE http://localhost:8000/api/items/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzgwNjk1MDgxLCJleHAiOjE3ODA2OTg2ODEsIm5iZiI6MTc4MDY5NTA4MSwianRpIjoiR2VrT0VialJIM2hQeUtXViIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Uo7TgTwuVzFzYgLt7Vr2ojTg0yHJxQ3snmxHS3OLS6s

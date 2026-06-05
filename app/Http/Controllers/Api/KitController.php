@@ -8,91 +8,100 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-
 class KitController extends Controller
 {
-    public function index(): \Illuminate\Http\JsonResponse {
-        try{
-            $kits = Auth::user()->kits()->orderBy('creeated_at', 'desc')->get();
-            return response()->json(['statur' => 1, 'kits' => $kits], 200);
-        }catch(\Exception $e){
-            return response()->json(['status' => 0, 'error' -> $e->getMessage()], 500);
+    public function index(): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $kits = Auth::user()->kits()->orderBy('created_at', 'desc')->get();
+            return response()->json(['status' => 1, 'data' => $kits], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 0, 'error' => $e->getMessage()], 500);
         }
     }
 
-    public function store(Request $request): \Illuminate\Http\JsonResponse {
-        $validator = Validator::make($request->all(),  [
+    public function store(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
         ]);
 
-        if($validator -> fails()){
+        if ($validator->fails()) {
             return response()->json(['status' => 0, 'errors' => $validator->errors()], 422);
         }
 
-        try{
+        try {
             $kit = new Kit();
             $kit->nome = $request->nome;
             $kit->descricao = $request->descricao;
             $kit->user_id = Auth::id();
             $kit->save();
-            return response()->json(['status' => 1, 'data' => $kit], 201);    
-        }catch(\Exception $e){
+
+            return response()->json(['status' => 1, 'data' => $kit], 201);
+        } catch (\Exception $e) {
             return response()->json(['status' => 0, 'error' => $e->getMessage()], 500);
         }
     }
 
-    public function show(string $id): \Illuminate\Http\JsonResponse{
-        try{
-            $kit = Kit::where('id', $id)->where('user_id', Auth::id())->firts();
+    public function show(string $id): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $kit = Kit::where('id', $id)->where('user_id', Auth::id())->first();
 
-            if(!kit){
-                return response()->json(['status' => 0, 'error' => 'Kit não encontrado']);
+            if (!$kit) {
+                return response()->json(['status' => 0, 'error' => 'Kit não encontrado'], 404);
             }
 
             $kit->load('items.categoria');
-            
+
             return response()->json(['status' => 1, 'data' => $kit], 200);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json(['status' => 0, 'error' => $e->getMessage()], 500);
         }
     }
-    
-    public function update(Request $request,string $id): \Illuminate\Http\JsonResponse{
+
+    public function update(Request $request, string $id): \Illuminate\Http\JsonResponse
+    {
         $validator = Validator::make($request->all(), [
             'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|',
+            'descricao' => 'nullable|string',
         ]);
 
-        if($validator->fails()){
-            return response()->json(['status'=> 0, 'errors' => $validator->errors()], 422);
+        if ($validator->fails()) {
+            return response()->json(['status' => 0, 'errors' => $validator->errors()], 422);
         }
-        try{
+
+        try {
             $kit = Kit::where('id', $id)->where('user_id', Auth::id())->first();
 
-            if($kit){
-                return response()->json(['status'=> 0, 'error' => 'kit não encontrado'], 404);
+            if (!$kit) {
+                return response()->json(['status' => 0, 'error' => 'Kit não encontrado'], 404);
             }
+
             $kit->nome = $request->nome;
             $kit->descricao = $request->descricao;
             $kit->save();
+
             return response()->json(['status' => 1, 'data' => $kit], 200);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json(['status' => 0, 'error' => $e->getMessage()], 500);
         }
     }
 
-    public function destroy(string $id): \Illuminate\Http\JsonResponse{
-        try{
+    public function destroy(string $id): \Illuminate\Http\JsonResponse
+    {
+        try {
             $kit = Kit::where('id', $id)->where('user_id', Auth::id())->first();
 
-            if(!$kit){
-                return response()->json(['status' => 0, 'error' => 'kit não encontrado'], 404);
+            if (!$kit) {
+                return response()->json(['status' => 0, 'error' => 'Kit não encontrado'], 404);
             }
 
             $kit->delete();
-            return response()->json(['status'=>1, 'messsage' => 'kit removido com sucesso'], 200);
-        }catch(\Exception $e){
+
+            return response()->json(['status' => 1, 'message' => 'Kit removido com sucesso'], 200);
+        } catch (\Exception $e) {
             return response()->json(['status' => 0, 'error' => $e->getMessage()], 500);
         }
     }

@@ -10,64 +10,68 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function register(Request $request): \Illuminate\Http\JsonResponse{
+    public function register(Request $request): \Illuminate\Http\JsonResponse
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        if($validator -> fails()){
-            return response -> json(['status' => 0, 'errors' => $validator -> errors()], 422);
+        if ($validator->fails()) {
+            return response()->json(['status' => 0, 'errors' => $validator->errors()], 422);
         }
 
-        try{
+        try {
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
             $user->save();
 
             $token = auth()->login($user);
-            
-            return response()->json(['status' => 1, 'token' => $token , 'user' => user], 201);
-        }catch(\Exception $e){
+
+            return response()->json(['status' => 1, 'token' => $token, 'user' => $user], 201);
+        } catch (\Exception $e) {
             return response()->json(['status' => 0, 'error' => $e->getMessage()], 500);
         }
     }
 
-    public function login(Request $request): \Illuminate\Http\JsonResponse {
+    public function login(Request $request): \Illuminate\Http\JsonResponse
+    {
         $validator = Validator::make($request->all(), [
-            'name'=> 'required|string|email',
+            'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-        
-        if($validator -> fails()){
+
+        if ($validator->fails()) {
             return response()->json(['status' => 0, 'errors' => $validator->errors()], 422);
         }
 
         $credentials = $request->only('email', 'password');
 
-        if(!$token = auth()->attemp($credentials)){
-            return response()->json(['status' => 0, 'erros' => 'Email ou password Inválidos'], 401);
+        if (!$token = auth()->attempt($credentials)) {
+            return response()->json(['status' => 0, 'error' => 'Email ou password inválidos'], 401);
         }
-        
+
         return response()->json(['status' => 1, 'token' => $token, 'user' => auth()->user()], 200);
     }
 
-    public function logout(): \Illuminate\Http\JsonResponse{
-        try{
+    public function logout(): \Illuminate\Http\JsonResponse
+    {
+        try {
             auth()->logout();
-            return response()->json(['status' => 1, 'message' => 'Sessao terminada'], 200);
-        }catch(\Exception $e){
+            return response()->json(['status' => 1, 'message' => 'Sessão terminada'], 200);
+        } catch (\Exception $e) {
             return response()->json(['status' => 0, 'error' => $e->getMessage()], 500);
         }
     }
-    public function me(): \Illuminate\Http\JsonResponse
+
+    public function user(): \Illuminate\Http\JsonResponse
     {
-        try{
+        try {
             return response()->json(['status' => 1, 'data' => auth()->user()], 200);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return response()->json(['status' => 0, 'error' => $e->getMessage()], 500);
         }
     }
