@@ -19,7 +19,7 @@ class CategoriaController extends Controller
         }
     }
 
-    public function store(Request $request): \Illuminate\Http\JsonResponse {
+    public function create(Request $request): \Illuminate\Http\JsonResponse {
         $validator = Validator::make($request->all(), [
             'nome' => 'required|string|max:255',
             'descricao' => 'nullable|string',
@@ -68,7 +68,7 @@ class CategoriaController extends Controller
         }
     }
 
-    public function destroy(string $id): \Illuminate\Http\JsonResponse {
+    public function delete(string $id): \Illuminate\Http\JsonResponse {
         try{
             $categoria = Categoria::where('id', $id)->where('user_id', Auth::id())->first();
 

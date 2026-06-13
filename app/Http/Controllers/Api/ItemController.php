@@ -38,7 +38,7 @@ class ItemController extends Controller
         }
     }
 
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function create(Request $request): \Illuminate\Http\JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'nome' => 'required|string|max:255',
@@ -113,7 +113,7 @@ class ItemController extends Controller
         }
     }
 
-    public function destroy(string $id): \Illuminate\Http\JsonResponse
+    public function delete(string $id): \Illuminate\Http\JsonResponse
     {
         try {
             $kitsDoUtilizador = Auth::user()->kits()->pluck('id');
