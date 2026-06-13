@@ -63,7 +63,7 @@ class ItemController extends Controller
             $item->nome = $request->nome;
             $item->descricao = $request->descricao;
             $item->quantidade = $request->quantidade ?? 1;
-            $item->comprado = false;
+            $item->comprado = $request->input('comprado', false);
             $item->kit_id = $request->kit_id;
             $item->categoria_id = $request->categoria_id;
             $item->save();
